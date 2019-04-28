@@ -19,24 +19,31 @@ namespace visualTodoList
     public partial class MainWindow : Window
     {
         ToDoList _List;
+        
         public MainWindow()
         {
             InitializeComponent();
             _List = new ToDoList();
         }
 
-        //private void Inputtext_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (e.Key == Key.Enter)
-        //    {
-        //        if (inputtext.Text == null) return;
+        private void inputtext_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (inputtext.Text == null) return;
+                inputtext.Clear();
+                _List.Add(inputtext.Text);
+                CheckBox c = new CheckBox
+                {
+                    Content = inputtext.Text
+                };
+                _ComboBox.Items.Add(c);
+                inputtext.Clear();
+            }
+        }
 
-        //        _List.Add(inputtext.Text);
+       
 
-        //        inputtext.Clear();
-        //    }
-        //}
-
-
+    
     }
 }
