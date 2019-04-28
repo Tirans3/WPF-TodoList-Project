@@ -6,9 +6,9 @@
 
         public bool Completed { get; set; } = false;
 
-        public Task(string taskdesc)
+        public Task(string task)
         {
-            task = taskdesc;
+          this.task = task;
 
         }
 
