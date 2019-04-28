@@ -15,14 +15,28 @@ using System.Windows.Shapes;
 
 namespace visualTodoList
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+   
     public partial class MainWindow : Window
     {
+        ToDoList _List;
         public MainWindow()
         {
             InitializeComponent();
+            _List = new ToDoList();
         }
+
+        //private void Inputtext_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Enter)
+        //    {
+        //        if (inputtext.Text == null) return;
+
+        //        _List.Add(inputtext.Text);
+
+        //        inputtext.Clear();
+        //    }
+        //}
+
+
     }
 }
