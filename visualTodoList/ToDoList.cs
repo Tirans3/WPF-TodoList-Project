@@ -8,11 +8,9 @@ namespace visualTodoList
 {
     class ToDoList
     {
-        class TodoList
-        {
             readonly List<Task> todo;
 
-            public TodoList()
+            public ToDoList()
             {
                 todo = new List<Task>();
             }
@@ -21,6 +19,11 @@ namespace visualTodoList
             {
                 todo.Add(task);
             }
+
+        public void Add(string str)
+        {
+            Add(new Task(str));
+        }
 
             public void Remove(Task task)
             {
@@ -54,6 +57,6 @@ namespace visualTodoList
 
                 }
             }
-        }
+        
     }
 }
