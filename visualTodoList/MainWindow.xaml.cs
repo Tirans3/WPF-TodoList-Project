@@ -28,22 +28,32 @@ namespace visualTodoList
 
         private void inputtext_KeyDown(object sender, KeyEventArgs e)
         {
+            string temp = inputtext.Text;
+
             if (e.Key == Key.Enter)
             {
-                if (inputtext.Text == null) return;
-                inputtext.Clear();
+                if (temp == null) return;
+               
                 _List.Add(inputtext.Text);
+
+                items.Content = _List.Count.ToString();
+
                 CheckBox c = new CheckBox
                 {
-                    Content = inputtext.Text
+                    Content = temp,
+                    FontSize = 16,
+
                 };
+            
                 _ComboBox.Items.Add(c);
+
                 inputtext.Clear();
             }
         }
 
-       
-
-    
+        private void All_Click(object sender, RoutedEventArgs e)
+        {
+            _ComboBox.IsDropDownOpen = true;
+        }
     }
 }
