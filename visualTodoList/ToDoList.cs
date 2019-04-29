@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace visualTodoList
 {
-    class ToDoList
+    class ToDoList:IEnumerable
     {
         readonly List<Task> todo;
 
@@ -57,5 +58,9 @@ namespace visualTodoList
             }
         }
 
+        public IEnumerator GetEnumerator()
+        {
+            return todo.GetEnumerator();
+        }
     }
 }
