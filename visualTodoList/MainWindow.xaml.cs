@@ -44,7 +44,7 @@ namespace visualTodoList
                     FontSize = 16,
 
                 };
-                //_list.Items.Add(c);
+                
                 _ComboBox.Items.Add(c);
 
                 inputtext.Clear();
@@ -54,39 +54,33 @@ namespace visualTodoList
 
         private void All_Click(object sender, RoutedEventArgs e)
         {
+            foreach (CheckBox temp in _ComboBox.Items)
+            {
+                
+                    temp.Visibility = Visibility.Visible;
+
+            }
             _ComboBox.IsDropDownOpen = true;
         }
 
         private void Active_Click(object sender, RoutedEventArgs e)
         {
-            _list.SelectionMode = SelectionMode.Multiple;
-            foreach (CheckBox temp in _ComboBox.ItemsSource)
+           
+            foreach (CheckBox temp in _ComboBox.Items)
             {
-                if (temp.IsChecked == false)
+                if (temp.IsChecked == true)
                 {
-                    CheckBox temps = temp;
+                    temp.Visibility = Visibility.Collapsed;
                     
-                    
-                     
                 }
             }
 
+           _ComboBox.IsDropDownOpen = true;
+        }
 
-            //for (int i = 0; i < _List.Count;i++) 
-            //{
-            //    if(((CheckBox)_ComboBox.Items[i]).IsChecked==false)
-            //    {
-            //        CheckBox temp = new CheckBox
-            //        {
-            //            Content = ((CheckBox)_ComboBox.Items[i]).Content,
-            //            FontSize = 20,
-            //        };
+        private void Completed_Click(object sender, RoutedEventArgs e)
+        {
 
-            //             tempCombo.Items.Add(temp);
-            //    }
-            //}
-
-            tempCombo.IsDropDownOpen = true;
         }
     }
 
