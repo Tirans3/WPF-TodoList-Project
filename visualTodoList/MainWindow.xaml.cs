@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 
 namespace visualTodoList
 {
-   
+
     public partial class MainWindow : Window
     {
         ToDoList _List;
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -32,8 +32,8 @@ namespace visualTodoList
 
             if (e.Key == Key.Enter)
             {
-                if (temp == null) return;
-               
+                if (temp == string.Empty) return;
+
                 _List.Add(inputtext.Text);
 
                 items.Content = _List.Count.ToString();
@@ -44,10 +44,11 @@ namespace visualTodoList
                     FontSize = 16,
 
                 };
-            
+                //_list.Items.Add(c);
                 _ComboBox.Items.Add(c);
 
                 inputtext.Clear();
+
             }
         }
 
@@ -55,5 +56,38 @@ namespace visualTodoList
         {
             _ComboBox.IsDropDownOpen = true;
         }
+
+        private void Active_Click(object sender, RoutedEventArgs e)
+        {
+            _list.SelectionMode = SelectionMode.Multiple;
+            foreach (CheckBox temp in _ComboBox.ItemsSource)
+            {
+                if (temp.IsChecked == false)
+                {
+                    CheckBox temps = temp;
+                    
+                    
+                     
+                }
+            }
+
+
+            //for (int i = 0; i < _List.Count;i++) 
+            //{
+            //    if(((CheckBox)_ComboBox.Items[i]).IsChecked==false)
+            //    {
+            //        CheckBox temp = new CheckBox
+            //        {
+            //            Content = ((CheckBox)_ComboBox.Items[i]).Content,
+            //            FontSize = 20,
+            //        };
+
+            //             tempCombo.Items.Add(temp);
+            //    }
+            //}
+
+            tempCombo.IsDropDownOpen = true;
+        }
     }
+
 }

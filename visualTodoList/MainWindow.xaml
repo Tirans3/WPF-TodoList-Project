@@ -6,5 +6,37 @@
         xmlns:local="clr-namespace:visualTodoList"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="10,0,0,0"/>
+    <Grid>
+        <ComboBox x:Name="_ComboBox" HorizontalAlignment="Left" Margin="100,114,0,0" VerticalAlignment="Top" Width="593" Height="22"/>
+        <TextBox x:Name="inputtext" HorizontalAlignment="Left" Height="29" Margin="98,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="595" RenderTransformOrigin="0.498,0.186" FontSize="16" KeyDown="inputtext_KeyDown"/>
+        <Label Name="Label_1" Content="Add Task" HorizontalAlignment="Left" Margin="17,80,0,0" VerticalAlignment="Top" Width="73" Height="30" FontWeight="Bold" FontSize="14" RenderTransformOrigin="-1.649,0.893"/>
+        <DockPanel HorizontalAlignment="Left" Height="37" LastChildFill="False" Margin="96,38,0,0" VerticalAlignment="Top" Width="600" RenderTransformOrigin="0.5,0.5">
+            <DockPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.302"/>
+                    <RotateTransform Angle="0.422"/>
+                    <TranslateTransform Y="-0.696"/>
+                </TransformGroup>
+            </DockPanel.RenderTransform>
+            <Button x:Name="items" Content="" Height="37" VerticalAlignment="Top" Width="36"/>
+            <Label x:Name="Labl1" Content="item left" Height="37" VerticalAlignment="Top" Width="73" FontSize="14"/>
+            <Button x:Name="All" Content="All" HorizontalAlignment="Left" Width="75" DockPanel.Dock="Left" FontSize="14" Click="All_Click"/>
+            <Button x:Name="Active" Content="Active" HorizontalAlignment="Left" Width="117" DockPanel.Dock="Left" FontSize="14" Click="Active_Click"/>
+            <Button x:Name="Completed" Content="Completed" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" DockPanel.Dock="Left" Height="37" RenderTransformOrigin="0.5,0.5" FontSize="14">
+
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.116"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button x:Name="Clear_Completed" Content="Clear Completed" HorizontalAlignment="Left" VerticalAlignment="Top" Width="172" DockPanel.Dock="Left" Height="37" FontSize="14"/>
+        </DockPanel>
+        <ComboBox x:Name="tempCombo" HorizontalAlignment="Left" Margin="112,175,0,0" VerticalAlignment="Top" Width="269"/>
+        <ListBox x:Name="_list" HorizontalAlignment="Left" Height="113" Margin="425,256,0,0" VerticalAlignment="Top" Width="186"/>
+    </Grid>
 </Window>
