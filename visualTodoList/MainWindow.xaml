@@ -36,7 +36,5 @@
             </Button>
             <Button x:Name="Clear_Completed" Content="Clear Completed" HorizontalAlignment="Left" VerticalAlignment="Top" Width="172" DockPanel.Dock="Left" Height="37" FontSize="14" Click="Clear_Completed_Click"/>
         </DockPanel>
-        <ComboBox x:Name="tempCombo" HorizontalAlignment="Left" Margin="112,175,0,0" VerticalAlignment="Top" Width="269"/>
-        <ListBox x:Name="_list" HorizontalAlignment="Left" Height="113" Margin="425,256,0,0" VerticalAlignment="Top" Width="186"/>
     </Grid>
 </Window>

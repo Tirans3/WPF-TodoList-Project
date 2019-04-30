@@ -111,7 +111,15 @@ namespace visualTodoList
 
         private void Clear_Completed_Click(object sender, RoutedEventArgs e)
         {
+           for(int i=0;i<_List.Count-1;i++)
+            {
+                if (((CheckBox)_ComboBox.Items[i]).IsChecked == true)
+                {
 
+                    _ComboBox.Items.RemoveAt(i);
+                }
+            }
+            
         }
     }
 
