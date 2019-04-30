@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -9,10 +10,15 @@ namespace visualTodoList
     {
         ToDoList _List;
 
+        List<CheckBox> checkBoxes;
+
         public MainWindow()
         {
             InitializeComponent();
+
             _List = new ToDoList();
+
+            checkBoxes = new List<CheckBox>();
         }
 
         private void inputtext_KeyDown(object sender, KeyEventArgs e)
@@ -23,10 +29,6 @@ namespace visualTodoList
             {
                 if (temp == string.Empty) return;
 
-                _List.Add(inputtext.Text);
-
-                items.Content = _List.Count.ToString();
-
                 CheckBox c = new CheckBox
                 {
                     Content = temp,
@@ -34,7 +36,9 @@ namespace visualTodoList
 
                 };
 
-                _ComboBox.Items.Add(c);
+                checkBoxes.Add(c);
+
+                items.Content = checkBoxes.Count.ToString();
 
                 inputtext.Clear();
 
@@ -43,72 +47,32 @@ namespace visualTodoList
 
         private void All_Click(object sender, RoutedEventArgs e)
         {
-
-            foreach (CheckBox temp in _ComboBox.Items)
-            {
-
-                temp.Visibility = Visibility.Visible;
-
-            }
+            _ComboBox.ItemsSource = checkBoxes;
             _ComboBox.IsDropDownOpen = true;
+            _ComboBox.Items.Refresh();
+
         }
 
         private void Active_Click(object sender, RoutedEventArgs e)
         {
-            foreach (CheckBox temp in _ComboBox.Items)
-            {
-
-                temp.Visibility = Visibility.Visible;
-
-            }
-
-
-            foreach (CheckBox temp in _ComboBox.Items)
-            {
-                if (temp.IsChecked == true)
-                {
-                    temp.Visibility = Visibility.Collapsed;
-
-                }
-            }
-
+            _ComboBox.ItemsSource = checkBoxes.FindAll(CheckBoxs => CheckBoxs.IsChecked == false);
             _ComboBox.IsDropDownOpen = true;
-
+            _ComboBox.Items.Refresh();
 
         }
 
         private void Completed_Click(object sender, RoutedEventArgs e)
         {
-            foreach (CheckBox temp in _ComboBox.Items)
-            {
-
-                temp.Visibility = Visibility.Visible;
-
-            }
-
-            foreach (CheckBox temp in _ComboBox.Items)
-            {
-                if (temp.IsChecked == false)
-                {
-                    temp.Visibility = Visibility.Collapsed;
-
-                }
-            }
-
+            _ComboBox.ItemsSource = checkBoxes.FindAll(CheckBoxs => CheckBoxs.IsChecked == true);
             _ComboBox.IsDropDownOpen = true;
+            _ComboBox.Items.Refresh();
+
         }
 
         private void Clear_Completed_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < _List.Count - 1; i++)
-            {
-                if (((CheckBox)_ComboBox.Items[i]).IsChecked == true)
-                {
-                    _List.Remove(i);
-                    _ComboBox.Items.RemoveAt(i);
-                }
-            }
-
+            checkBoxes = checkBoxes.FindAll(item => item.IsChecked == false);
+            items.Content = checkBoxes.Count.ToString();
         }
     }
 

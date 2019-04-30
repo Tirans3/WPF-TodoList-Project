@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace visualTodoList
 {
-    class ToDoList:IEnumerable
+    class ToDoList:IEnumerable<Task>
     {
         readonly List<Task> todo;
 
@@ -59,6 +59,11 @@ namespace visualTodoList
         }
 
         public IEnumerator GetEnumerator()
+        {
+            return todo.GetEnumerator();
+        }
+
+        IEnumerator<Task> IEnumerable<Task>.GetEnumerator()
         {
             return todo.GetEnumerator();
         }
