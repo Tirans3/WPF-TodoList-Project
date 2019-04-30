@@ -54,10 +54,11 @@ namespace visualTodoList
 
         private void All_Click(object sender, RoutedEventArgs e)
         {
+
             foreach (CheckBox temp in _ComboBox.Items)
             {
-                
-                    temp.Visibility = Visibility.Visible;
+
+                temp.Visibility = Visibility.Visible;
 
             }
             _ComboBox.IsDropDownOpen = true;
@@ -65,7 +66,14 @@ namespace visualTodoList
 
         private void Active_Click(object sender, RoutedEventArgs e)
         {
-           
+            foreach (CheckBox temp in _ComboBox.Items)
+            {
+
+                temp.Visibility = Visibility.Visible;
+
+            }
+
+
             foreach (CheckBox temp in _ComboBox.Items)
             {
                 if (temp.IsChecked == true)
@@ -76,9 +84,32 @@ namespace visualTodoList
             }
 
            _ComboBox.IsDropDownOpen = true;
+
+            
         }
 
         private void Completed_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (CheckBox temp in _ComboBox.Items)
+            {
+
+                temp.Visibility = Visibility.Visible;
+
+            }
+
+            foreach (CheckBox temp in _ComboBox.Items)
+            {
+                if (temp.IsChecked == false)
+                {
+                    temp.Visibility = Visibility.Collapsed;
+
+                }
+            }
+           
+            _ComboBox.IsDropDownOpen = true;
+        }
+
+        private void Clear_Completed_Click(object sender, RoutedEventArgs e)
         {
 
         }
