@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace visualTodoList
 {
@@ -44,7 +33,7 @@ namespace visualTodoList
                     FontSize = 16,
 
                 };
-                
+
                 _ComboBox.Items.Add(c);
 
                 inputtext.Clear();
@@ -79,13 +68,13 @@ namespace visualTodoList
                 if (temp.IsChecked == true)
                 {
                     temp.Visibility = Visibility.Collapsed;
-                    
+
                 }
             }
 
-           _ComboBox.IsDropDownOpen = true;
+            _ComboBox.IsDropDownOpen = true;
 
-            
+
         }
 
         private void Completed_Click(object sender, RoutedEventArgs e)
@@ -105,21 +94,21 @@ namespace visualTodoList
 
                 }
             }
-           
+
             _ComboBox.IsDropDownOpen = true;
         }
 
         private void Clear_Completed_Click(object sender, RoutedEventArgs e)
         {
-           for(int i=0;i<_List.Count-1;i++)
+            for (int i = 0; i < _List.Count - 1; i++)
             {
                 if (((CheckBox)_ComboBox.Items[i]).IsChecked == true)
                 {
-
+                    _List.Remove(i);
                     _ComboBox.Items.RemoveAt(i);
                 }
             }
-            
+
         }
     }
 
