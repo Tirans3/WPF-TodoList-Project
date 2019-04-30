@@ -38,7 +38,7 @@ namespace visualTodoList
 
                 checkBoxes.Add(c);
 
-                items.Content = checkBoxes.Count.ToString();
+              itemsleft.Content = checkBoxes.Count.ToString();
 
                 inputtext.Clear();
 
@@ -72,7 +72,7 @@ namespace visualTodoList
         private void Clear_Completed_Click(object sender, RoutedEventArgs e)
         {
             checkBoxes = checkBoxes.FindAll(item => item.IsChecked == false);
-            items.Content = checkBoxes.Count.ToString();
+           itemsleft.Content = checkBoxes.Count.ToString();
         }
     }
 
