@@ -28,18 +28,20 @@ namespace visualTodoList
 
         public ToDoList Active()
         {
-            ToDoList temp = new ToDoList();
-
-            temp.todo = todo.FindAll(c => c.Completed == false);
+            ToDoList temp = new ToDoList
+            {
+                todo = todo.FindAll(c => c.Completed == false)
+            };
 
             return temp;
         }
 
         public ToDoList Completed()
         {
-            ToDoList temp = new ToDoList();
-
-            temp.todo = todo.FindAll(c => c.Completed == true);
+            ToDoList temp = new ToDoList
+            {
+                todo = todo.FindAll(c => c.Completed == true)
+            };
 
             return temp;
         }
