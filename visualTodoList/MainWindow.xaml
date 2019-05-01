@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ComboBox x:Name="_ComboBox" HorizontalAlignment="Left" Margin="95,120,0,0" VerticalAlignment="Top" Width="600" Height="20" />
+        <ComboBox x:Name="_ComboBox" HorizontalAlignment="Left" Margin="95,120,0,0" VerticalAlignment="Top" Width="600" Height="30" IsTextSearchEnabled="False" TextOptions.TextFormattingMode="Display" />
         <TextBox x:Name="inputtext" HorizontalAlignment="Left" Height="29" Margin="95,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="600" RenderTransformOrigin="0.498,0.186" FontSize="16" KeyDown="inputtext_KeyDown"/>
         <Label Name="Label_1" Content="Add Task" HorizontalAlignment="Left" Margin="17,80,0,0" VerticalAlignment="Top" Width="73" Height="30" FontWeight="Bold" FontSize="14" RenderTransformOrigin="-1.649,0.893"/>
         <DockPanel HorizontalAlignment="Left" Height="37" LastChildFill="False" Margin="96,38,0,0" VerticalAlignment="Top" Width="600" RenderTransformOrigin="0.5,0.5">
