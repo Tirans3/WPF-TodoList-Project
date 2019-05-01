@@ -6,14 +6,15 @@ namespace visualTodoList
 {
     class ToDoList:IEnumerable<Task>
     {
-        readonly List<Task> todo;
+          List<Task> todo;
+
+        public int Count { get => todo.Count; }
 
         public ToDoList()
         {
             todo = new List<Task>();
         }
-
-        public int Count { get => todo.Count; }
+      
 
         public void Add(Task task)
         {
@@ -23,6 +24,24 @@ namespace visualTodoList
         public void Add(string str)
         {
             Add(new Task(str));
+        }
+
+        public ToDoList Active()
+        {
+            ToDoList temp = new ToDoList();
+
+            temp.todo = todo.FindAll(c => c.Completed == false);
+
+            return temp;
+        }
+
+        public ToDoList Completed()
+        {
+            ToDoList temp = new ToDoList();
+
+            temp.todo = todo.FindAll(c => c.Completed == true);
+
+            return temp;
         }
 
         public void Remove(Task task)
