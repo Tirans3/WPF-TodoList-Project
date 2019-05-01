@@ -36,6 +36,8 @@ namespace visualTodoList
 
                 };
 
+                _List.Add(temp);
+
                 checkBoxes.Add(c);
 
               itemsleft.Content = checkBoxes.Count.ToString();
@@ -47,7 +49,7 @@ namespace visualTodoList
 
         private void All_Click(object sender, RoutedEventArgs e)
         {
-            _ComboBox.ItemsSource = checkBoxes;
+            _ComboBox.ItemsSource = _List;/*checkBoxes*/
             _ComboBox.IsDropDownOpen = true;
             _ComboBox.Items.Refresh();
 
@@ -55,7 +57,7 @@ namespace visualTodoList
 
         private void Active_Click(object sender, RoutedEventArgs e)
         {
-            _ComboBox.ItemsSource = checkBoxes.FindAll(CheckBoxs => CheckBoxs.IsChecked == false);
+            _ComboBox.ItemsSource = _List.Active();/* checkBoxes.FindAll(CheckBoxs => CheckBoxs.IsChecked == false);*/
             _ComboBox.IsDropDownOpen = true;
             _ComboBox.Items.Refresh();
 
@@ -63,7 +65,7 @@ namespace visualTodoList
 
         private void Completed_Click(object sender, RoutedEventArgs e)
         {
-            _ComboBox.ItemsSource = checkBoxes.FindAll(CheckBoxs => CheckBoxs.IsChecked == true);
+            _ComboBox.ItemsSource = _List.Completed(); /*checkBoxes.FindAll(CheckBoxs => CheckBoxs.IsChecked == true);*/
             _ComboBox.IsDropDownOpen = true;
             _ComboBox.Items.Refresh();
 
@@ -71,9 +73,12 @@ namespace visualTodoList
 
         private void Clear_Completed_Click(object sender, RoutedEventArgs e)
         {
-            checkBoxes = checkBoxes.FindAll(item => item.IsChecked == false);
+           /* checkBoxes = checkBoxes.FindAll(item => item.IsChecked == false);*/
+            _List.RemoveAll(c=>c.Completed==true);
            itemsleft.Content = checkBoxes.Count.ToString();
         }
+
+       
     }
 
 }
