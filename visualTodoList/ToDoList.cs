@@ -59,6 +59,17 @@ namespace visualTodoList
             return temp;
         }
 
+        public ToDoList ToToDoList(List<CheckBox> lb)
+        {
+            ToDoList temp = new ToDoList();
+
+            foreach (CheckBox i in lb)
+            {
+                temp.Add( new Task {Completed=(bool)i.IsChecked,task=(string)i.Content });
+            }
+
+            return temp;
+        }
 
         public void Remove(Task task)
         {
