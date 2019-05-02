@@ -19,6 +19,8 @@ namespace visualTodoList
             _List = new ToDoList();
 
             checkBoxes = new List<CheckBox>();
+
+            //Clear_Completed.IsEnabled = false;
         }
 
         private void inputtext_KeyDown(object sender, KeyEventArgs e)
@@ -29,6 +31,8 @@ namespace visualTodoList
             {
                 if (temp == string.Empty) return;
 
+                _List.Add(temp);
+
                 CheckBox c = new CheckBox
                 {
                     Content = temp,
@@ -36,11 +40,9 @@ namespace visualTodoList
 
                 };
 
-                _List.Add(temp);
-
                 checkBoxes.Add(c);
 
-              itemsleft.Content = checkBoxes.Count.ToString();
+                itemsleft.Content = checkBoxes.Count.ToString();
 
                 inputtext.Clear();
 
@@ -49,36 +51,37 @@ namespace visualTodoList
 
         private void All_Click(object sender, RoutedEventArgs e)
         {
-            _ComboBox.ItemsSource = _List;/*checkBoxes*/
+            _ComboBox.ItemsSource = checkBoxes;
+
             _ComboBox.IsDropDownOpen = true;
-            _ComboBox.Items.Refresh();
 
         }
 
         private void Active_Click(object sender, RoutedEventArgs e)
         {
-            _ComboBox.ItemsSource = _List.Active();/* checkBoxes.FindAll(CheckBoxs => CheckBoxs.IsChecked == false);*/
+            _ComboBox.ItemsSource = checkBoxes.FindAll(CheckBox => CheckBox.IsChecked == false);
+
             _ComboBox.IsDropDownOpen = true;
-            _ComboBox.Items.Refresh();
 
         }
 
         private void Completed_Click(object sender, RoutedEventArgs e)
         {
-            _ComboBox.ItemsSource = _List.Completed(); /*checkBoxes.FindAll(CheckBoxs => CheckBoxs.IsChecked == true);*/
+            _ComboBox.ItemsSource = checkBoxes.FindAll(CheckBox => CheckBox.IsChecked == true);
+
             _ComboBox.IsDropDownOpen = true;
-            _ComboBox.Items.Refresh();
 
         }
 
         private void Clear_Completed_Click(object sender, RoutedEventArgs e)
         {
-           /* checkBoxes = checkBoxes.FindAll(item => item.IsChecked == false);*/
-            _List.RemoveAll(c=>c.Completed==true);
-           itemsleft.Content = checkBoxes.Count.ToString();
+            checkBoxes = checkBoxes.FindAll(item => item.IsChecked == false);
+
+            _List.RemoveAll(c => c.Completed == true);
+
+            itemsleft.Content = checkBoxes.Count.ToString();
         }
 
-       
     }
 
 }
