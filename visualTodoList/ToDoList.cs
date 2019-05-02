@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace visualTodoList
 {
@@ -45,6 +46,19 @@ namespace visualTodoList
 
             return temp;
         }
+
+        public List<CheckBox> ToChecBox()
+        {
+            List<CheckBox> temp = new List<CheckBox>();
+
+            foreach(var i in todo)
+            {
+                temp.Add(new CheckBox { IsChecked = i.Completed, Content = i.task });
+            }
+
+            return temp;
+        }
+
 
         public void Remove(Task task)
         {
