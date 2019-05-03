@@ -2,78 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Controls;
-
+using System.Linq;
 namespace visualTodoList
 {
-    class ToDoList:IEnumerable<Task>
+  abstract  class ToDoList<T>:IEnumerable<T>
     {
-          List<Task> todo;
+          List<T> todo;
 
         public int Count { get => todo.Count; }
 
         public ToDoList()
         {
-            todo = new List<Task>();
-        }
-      
-
-        public void Add(Task task)
-        {
-            todo.Add(task);
+            todo = new List<T>();
         }
 
-        public void Add(string str)
+        public void Add(T t)
         {
-            Add(new Task(str));
+            todo.Add(t);
         }
 
-        public ToDoList Active()
+
+        public void Remove(T t)
         {
-            ToDoList temp = new ToDoList
-            {
-                todo = todo.FindAll(c => c.Completed == false)
-            };
-
-            return temp;
-        }
-
-        public ToDoList Completed()
-        {
-            ToDoList temp = new ToDoList
-            {
-                todo = todo.FindAll(c => c.Completed == true)
-            };
-
-            return temp;
-        }
-
-        public List<CheckBox> ToChecBox()
-        {
-            List<CheckBox> temp = new List<CheckBox>();
-
-            foreach(var i in todo)
-            {
-                temp.Add(new CheckBox { IsChecked = i.Completed, Content = i.task });
-            }
-
-            return temp;
-        }
-
-        public ToDoList ToToDoList(List<CheckBox> lb)
-        {
-            ToDoList temp = new ToDoList();
-
-            foreach (CheckBox i in lb)
-            {
-                temp.Add( new Task {Completed=(bool)i.IsChecked,task=(string)i.Content });
-            }
-
-            return temp;
-        }
-
-        public void Remove(Task task)
-        {
-            todo.Remove(task);
+            todo.Remove(t);
         }
 
         public void Remove(int i)
@@ -81,35 +32,25 @@ namespace visualTodoList
             todo.RemoveAt(i);
         }
 
-        public int RemoveAll(Predicate<Task> match)
+        public int RemoveAll(Predicate<T> match)
         {
             return todo.RemoveAll(match);
         }
 
-        public void Complete(int i)
-        {
-            todo[i].Completed = true;
-        }
+        public abstract ToDoList<T> Active();
 
-        public void CompleteAll(Predicate<Task> match)
-        {
-            for (int i = 0; i < todo.Count; i++)
-            {
+        public abstract ToDoList<T> Completed();
 
-                if (match(todo[i]) == true)
-                {
-                    todo[i].Completed = true;
-                }
+        public abstract void Complete(int i);
 
-            }
-        }
+        public abstract void CompleteAll(Predicate<T> match);
 
         public IEnumerator GetEnumerator()
         {
             return todo.GetEnumerator();
         }
 
-        IEnumerator<Task> IEnumerable<Task>.GetEnumerator()
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
             return todo.GetEnumerator();
         }
