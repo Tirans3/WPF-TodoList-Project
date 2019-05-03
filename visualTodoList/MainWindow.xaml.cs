@@ -31,7 +31,9 @@ namespace visualTodoList
                     FontSize = 16,
 
                 };
-
+                TaskContext db = new TaskContext();
+                db.Tasks.Add(new Task(temp));
+                db.SaveChanges();
                 checkBoxes.Add(c);
 
                 itemsleft.Content = checkBoxes.Count.ToString();
