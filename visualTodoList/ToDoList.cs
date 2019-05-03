@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Windows.Controls;
+
 namespace visualTodoList
 {
     abstract class ToDoList<T> : IEnumerable<T>
@@ -14,30 +16,37 @@ namespace visualTodoList
             todo = new List<T>();
         }
 
+       
         public void Add(T t)
         {
             todo.Add(t);
         }
 
-        public void Remove(T t)
+        public bool Remove(T t)
         {
-            todo.Remove(t);
+          return  todo.Remove(t);
         }
 
-        public void Remove(int i)
+        public void RemoveAt(int i)
         {
             todo.RemoveAt(i);
         }
 
-        public abstract int RemoveAll(Predicate<T> match);
+        public virtual int RemoveAll(Predicate<T> match) { return default(int); }
 
-        public abstract ToDoList<T> Active();
+        public virtual void CompleteAll(Predicate<T> match) { }
 
-        public abstract ToDoList<T> Completed();
+        public abstract List<T> All();
 
-        public abstract void Complete(int i);
+        public abstract List<T> Active();
 
-        public abstract void CompleteAll(Predicate<T> match);
+        public abstract List<T> Completed();
+
+        public abstract void ClearCompleted();
+
+        public abstract bool Complete(T t) ;
+
+       
 
         public IEnumerator GetEnumerator()
         {
