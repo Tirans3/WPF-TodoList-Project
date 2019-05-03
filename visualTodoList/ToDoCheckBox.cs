@@ -27,13 +27,7 @@ namespace visualTodoList
 
         public override void ClearCompleted()
         {
-            for(int i=0; i<todo.Count;i++)
-            {
-                if (Complete(todo[i]))
-                {
-                    todo.RemoveAt(i);
-                }
-            }
+            todo.RemoveAll(i=>Complete(i));
 
         }
 

@@ -1,4 +1,5 @@
-﻿namespace visualTodoList
+﻿using System.Data.Entity;
+namespace visualTodoList
 {
     class Task
     {
@@ -16,4 +17,6 @@
 
         }
     }
+
+    
 }

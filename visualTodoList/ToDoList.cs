@@ -15,7 +15,6 @@ namespace visualTodoList
         {
             todo = new List<T>();
         }
-
        
         public void Add(T t)
         {
@@ -45,8 +44,6 @@ namespace visualTodoList
         public abstract void ClearCompleted();
 
         public abstract bool Complete(T t) ;
-
-       
 
         public IEnumerator GetEnumerator()
         {

@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Linq;
 
 namespace visualTodoList
 {
@@ -13,23 +14,16 @@ namespace visualTodoList
         public MainWindow()
         {
             InitializeComponent();
-
-            
-
             checkBoxes = new ToDoCheckBox();
 
             //Clear_Completed.IsEnabled = false;
         }
 
-        private void inputtext_KeyDown(object sender, KeyEventArgs e)
+        private void Refrash(KeyEventArgs e, string temp)
         {
-            string temp = inputtext.Text;
-
             if (e.Key == Key.Enter)
             {
                 if (temp == string.Empty) return;
-
-               
 
                 CheckBox c = new CheckBox
                 {
@@ -47,12 +41,19 @@ namespace visualTodoList
             }
         }
 
+        private void inputtext_KeyDown(object sender, KeyEventArgs e)
+        {
+            string temp = inputtext.Text;
+            Refrash(e, temp);
+        }
+
         private void All_Click(object sender, RoutedEventArgs e)
         {
             _ComboBox.ItemsSource = checkBoxes.All();
 
             _ComboBox.IsDropDownOpen = true;
 
+            _ComboBox.Items.Refresh();
         }
 
         private void Active_Click(object sender, RoutedEventArgs e)
