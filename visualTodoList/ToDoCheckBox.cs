@@ -32,7 +32,8 @@ namespace visualTodoList
             todo.RemoveAll(i=>Complete(i));
 
         }
-        private void Refrash(KeyEventArgs e, TextBox box,ToDoCheckBox todobx, string temp)
+
+        public void Add(KeyEventArgs e, TextBox box, string temp)
         {
             if (e.Key == Key.Enter)
             {
@@ -46,7 +47,8 @@ namespace visualTodoList
 
                 };
                 
-                todobx.Add(c);
+                todo.Add(c);
+
                 box.Clear();
 
             }
