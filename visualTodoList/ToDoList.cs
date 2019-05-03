@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Windows.Controls;
-using System.Linq;
 namespace visualTodoList
 {
-  abstract  class ToDoList<T>:IEnumerable<T>
+    abstract class ToDoList<T> : IEnumerable<T>
     {
-          List<T> todo;
+        protected List<T> todo;
 
         public int Count { get => todo.Count; }
 
@@ -21,7 +19,6 @@ namespace visualTodoList
             todo.Add(t);
         }
 
-
         public void Remove(T t)
         {
             todo.Remove(t);
@@ -32,10 +29,7 @@ namespace visualTodoList
             todo.RemoveAt(i);
         }
 
-        public int RemoveAll(Predicate<T> match)
-        {
-            return todo.RemoveAll(match);
-        }
+        public abstract int RemoveAll(Predicate<T> match);
 
         public abstract ToDoList<T> Active();
 
