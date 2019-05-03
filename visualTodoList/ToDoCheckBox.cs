@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Input;
+
 namespace visualTodoList
 {
     class ToDoCheckBox : ToDoList<CheckBox>
@@ -29,6 +31,25 @@ namespace visualTodoList
         {
             todo.RemoveAll(i=>Complete(i));
 
+        }
+        private void Refrash(KeyEventArgs e, TextBox box,ToDoCheckBox todobx, string temp)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (temp == string.Empty) return;
+
+                CheckBox c = new CheckBox
+                {
+                    Content = temp,
+
+                    FontSize = 16,
+
+                };
+                
+                todobx.Add(c);
+                box.Clear();
+
+            }
         }
 
     }
