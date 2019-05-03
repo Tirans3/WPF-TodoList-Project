@@ -19,34 +19,12 @@ namespace visualTodoList
             //Clear_Completed.IsEnabled = false;
         }
 
-        private void Refrash(KeyEventArgs e, string temp)
-        {
-            if (e.Key == Key.Enter)
-            {
-                if (temp == string.Empty) return;
+        
 
-                CheckBox c = new CheckBox
-                {
-                    Content = temp,
-                    FontSize = 16,
-
-                };
-                TaskContext db = new TaskContext();
-                db.Tasks.Add(new Task(temp));
-                db.SaveChanges();
-                checkBoxes.Add(c);
-
-                itemsleft.Content = checkBoxes.Count.ToString();
-
-                inputtext.Clear();
-
-            }
-        }
-
-        private void inputtext_KeyDown(object sender, KeyEventArgs e)
+        private void Inputtext_KeyDown(object sender, KeyEventArgs e)
         {
             string temp = inputtext.Text;
-            Refrash(e, temp);
+            checkBoxes.Add(e,inputtext, temp);
         }
 
         private void All_Click(object sender, RoutedEventArgs e)
