@@ -8,17 +8,15 @@ namespace visualTodoList
 
     public partial class MainWindow : Window
     {
-        ToDoList _List;
-
-        List<CheckBox> checkBoxes;
+        ToDoCheckBox checkBoxes;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            _List = new ToDoList();
+            
 
-            checkBoxes = new List<CheckBox>();
+            checkBoxes = new ToDoCheckBox();
 
             //Clear_Completed.IsEnabled = false;
         }
@@ -31,7 +29,7 @@ namespace visualTodoList
             {
                 if (temp == string.Empty) return;
 
-                _List.Add(temp);
+               
 
                 CheckBox c = new CheckBox
                 {
@@ -51,7 +49,7 @@ namespace visualTodoList
 
         private void All_Click(object sender, RoutedEventArgs e)
         {
-            _ComboBox.ItemsSource = checkBoxes;
+            _ComboBox.ItemsSource = checkBoxes.All();
 
             _ComboBox.IsDropDownOpen = true;
 
@@ -59,7 +57,7 @@ namespace visualTodoList
 
         private void Active_Click(object sender, RoutedEventArgs e)
         {
-            _ComboBox.ItemsSource = checkBoxes.FindAll(CheckBox => CheckBox.IsChecked == false);
+            _ComboBox.ItemsSource = checkBoxes.Active();
 
             _ComboBox.IsDropDownOpen = true;
 
@@ -67,7 +65,7 @@ namespace visualTodoList
 
         private void Completed_Click(object sender, RoutedEventArgs e)
         {
-            _ComboBox.ItemsSource = checkBoxes.FindAll(CheckBox => CheckBox.IsChecked == true);
+            _ComboBox.ItemsSource = checkBoxes.Completed();
 
             _ComboBox.IsDropDownOpen = true;
 
@@ -75,9 +73,7 @@ namespace visualTodoList
 
         private void Clear_Completed_Click(object sender, RoutedEventArgs e)
         {
-            checkBoxes = checkBoxes.FindAll(item => item.IsChecked == false);
-
-            _List.RemoveAll(c => c.Completed == true);
+             checkBoxes.ClearCompleted();
 
             itemsleft.Content = checkBoxes.Count.ToString();
         }
