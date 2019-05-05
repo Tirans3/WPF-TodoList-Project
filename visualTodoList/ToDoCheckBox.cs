@@ -29,14 +29,51 @@ namespace visualTodoList
 
         public override void ClearCompleted()
         {
-            todo.RemoveAll(i=>Complete(i));
+            todo.RemoveAll(i => Complete(i));
 
         }
 
-        public void Add(KeyEventArgs e, TextBox box, string temp)
+        public static List<CheckBox> TaskToCheckBox(IEnumerable<Task> t)
         {
-            if (e.Key == Key.Enter)
+            List<CheckBox> temp = new List<CheckBox>();
+
+            foreach (var i in t)
             {
+                temp.Add(new CheckBox
+                {
+                    Content = i.task,
+
+                    FontSize = 16,
+                });
+            }
+
+            return temp;
+        }
+
+        static Task ToCheckBox(CheckBox t)
+        {
+            return new Task { Completed = (bool)t.IsChecked, task = t.Content.ToString() };
+        }
+
+        public static IEnumerable<Task> CheckBoxToTask(List<CheckBox> t)
+        {
+            List<Task> temp = new List<Task>();
+
+            foreach (var i in t)
+            {
+                temp.Add(ToCheckBox(i));
+            }
+
+            return temp;
+        }
+
+        public static implicit operator ToDoCheckBox (List<Task> t)
+        {
+            return new ToDoCheckBox { todo =TaskToCheckBox(t) };
+        }
+
+        public void Add( TextBox box, Button but, string temp)
+        {
                 if (temp == string.Empty) return;
 
                 CheckBox c = new CheckBox
@@ -44,14 +81,14 @@ namespace visualTodoList
                     Content = temp,
 
                     FontSize = 16,
-
                 };
                 
                 todo.Add(c);
 
                 box.Clear();
 
-            }
+               but.Content = todo.Count;
+
         }
 
     }
