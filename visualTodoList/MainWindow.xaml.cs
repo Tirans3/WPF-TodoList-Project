@@ -3,28 +3,33 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Linq;
-
+using System.Data.Entity;
 namespace visualTodoList
 {
 
     public partial class MainWindow : Window
     {
         ToDoCheckBox checkBoxes;
-
+        
         public MainWindow()
         {
             InitializeComponent();
-            checkBoxes = new ToDoCheckBox();
 
+           checkBoxes =TaskdbControl.DownloadData();
+
+            itemsleft.Content = checkBoxes.Count;
             //Clear_Completed.IsEnabled = false;
         }
 
-        
-
         private void Inputtext_KeyDown(object sender, KeyEventArgs e)
         {
-            string temp = inputtext.Text;
-            checkBoxes.Add(e,inputtext, temp);
+            if (e.Key == Key.Enter)
+            {
+              checkBoxes.Add(inputtext,itemsleft, inputtext.Text);
+
+              TaskdbControl.Add( inputtext.Text);
+                
+            }
         }
 
         private void All_Click(object sender, RoutedEventArgs e)
@@ -54,7 +59,9 @@ namespace visualTodoList
 
         private void Clear_Completed_Click(object sender, RoutedEventArgs e)
         {
-             checkBoxes.ClearCompleted();
+            TaskdbControl.RemoveCompleted(ToDoCheckBox.CheckBoxToTask( checkBoxes.Completed()));
+
+            checkBoxes.ClearCompleted();
 
             itemsleft.Content = checkBoxes.Count.ToString();
         }
